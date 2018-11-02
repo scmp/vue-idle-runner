@@ -19,9 +19,9 @@ exports.default = function (options) {
     name: 'onload-idle-queue',
     mixins: [_onLoadIdle2.default],
     props: {
-      timeout: {
+      onLoadTimeout: {
         type: Number,
-        default: (0, _get2.default)(options, 'timeout', 0) // No timeout, should wait for onload event.
+        default: (0, _get2.default)(options, 'onLoadTimeout', 0) // No timeout, should wait for onload event.
       }
     },
     render: function render(h) {

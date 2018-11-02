@@ -9,7 +9,7 @@ export default {
     }
   },
   props: {
-    timeout: {
+    onLoadTimeout: {
       type: Number,
       default: 0, // No timeout, should wait for onload event.
     },
@@ -20,8 +20,8 @@ export default {
       this.checkIdle()
     } else {
       window.addEventListener('load', this.setOnLoad)
-      if (this.timeout > 0) {
-        this.timeoutID = setTimeout(this.setOnLoad, this.timeout)
+      if (this.onLoadTimeout > 0) {
+        this.timeoutID = setTimeout(this.setOnLoad, this.onLoadTimeout)
       }
     }
   },
@@ -32,11 +32,11 @@ export default {
       })
     },
     setOnLoad() {
+      this.onLoad = true
       window.removeEventListener('load', this.setOnLoad)
       if (this.timeoutID !== null) {
         clearTimeout(this.timeoutID)
       }
-      this.onLoad = true
     },
   },
   watch: {
