@@ -14,29 +14,43 @@ exports.default = {
   data: function data() {
     return {
       isOnloadIdle: false,
-      onLoad: false
+      onLoad: false,
+      timeoutID: null
     };
   },
-  mounted: function mounted() {
-    var _this = this;
 
+  props: {
+    onLoadTimeout: {
+      type: Number,
+      default: 0 // No timeout, should wait for onload event.
+    }
+  },
+  mounted: function mounted() {
     if ((0, _get2.default)(document, 'readyState') === 'complete') {
       this.onLoad = true;
       this.checkIdle();
     } else {
-      window.addEventListener('load', function () {
-        _this.onLoad = true;
-      });
+      window.addEventListener('load', this.setOnLoad);
+      if (this.onLoadTimeout > 0) {
+        this.timeoutID = setTimeout(this.setOnLoad, this.onLoadTimeout);
+      }
     }
   },
 
   methods: {
     checkIdle: function checkIdle() {
-      var _this2 = this;
+      var _this = this;
 
       this.$idleQueue(function () {
-        _this2.isOnloadIdle = true;
+        _this.isOnloadIdle = true;
       });
+    },
+    setOnLoad: function setOnLoad() {
+      this.onLoad = true;
+      window.removeEventListener('load', this.setOnLoad);
+      if (this.timeoutID !== null) {
+        clearTimeout(this.timeoutID);
+      }
     }
   },
   watch: {

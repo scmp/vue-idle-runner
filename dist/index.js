@@ -20,7 +20,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
   install: function install(Vue) {
-    Vue.component('onload-idle-queue', _onLoadIdleQueue2.default);
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    Vue.component('onload-idle-queue', (0, _onLoadIdleQueue2.default)(options));
     Vue.component('idle-queue', _idleQueue4.default);
 
     Vue.prototype.$idleQueue = function (func) {

@@ -5,16 +5,24 @@ export default {
     return {
       isOnloadIdle: false,
       onLoad: false,
+      timeoutID: null,
     }
+  },
+  props: {
+    onLoadTimeout: {
+      type: Number,
+      default: 0, // No timeout, should wait for onload event.
+    },
   },
   mounted() {
     if (get(document, 'readyState') === 'complete') {
       this.onLoad = true
       this.checkIdle()
     } else {
-      window.addEventListener('load', () => {
-        this.onLoad = true
-      })
+      window.addEventListener('load', this.setOnLoad)
+      if (this.onLoadTimeout > 0) {
+        this.timeoutID = setTimeout(this.setOnLoad, this.onLoadTimeout)
+      }
     }
   },
   methods: {
@@ -22,6 +30,13 @@ export default {
       this.$idleQueue(() => {
         this.isOnloadIdle = true
       })
+    },
+    setOnLoad() {
+      this.onLoad = true
+      window.removeEventListener('load', this.setOnLoad)
+      if (this.timeoutID !== null) {
+        clearTimeout(this.timeoutID)
+      }
     },
   },
   watch: {
