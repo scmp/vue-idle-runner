@@ -33,16 +33,10 @@ export default {
     },
     setOnLoad() {
       this.onLoad = true
+      this.checkIdle()
       window.removeEventListener('load', this.setOnLoad)
       if (this.timeoutID !== null) {
         clearTimeout(this.timeoutID)
-      }
-    },
-  },
-  watch: {
-    onLoad(onLoad, oldValue) {
-      if (onLoad && !oldValue) {
-        this.checkIdle()
       }
     },
   },
