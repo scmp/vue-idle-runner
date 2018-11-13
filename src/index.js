@@ -11,11 +11,11 @@ export default {
       onLoadTimeout: 0,
     }
 
-    Vue.component('onload-idle-queue', onLoadIdleQueue(defaults(defaultOptions, options)))
+    Vue.component('onload-idle-queue', onLoadIdleQueue(defaults(options, defaultOptions)))
     Vue.component('idle-queue', idleQueue)
 
     Vue.prototype.$idleQueue = function (func, options = {}) {
-      options = defaults(defaultOptions, options)
+      options = defaults(options, defaultOptions)
       if (get(options, 'onload') && typeof window !== 'undefined' && typeof document !== 'undefined') {
         if (get(document, 'readyState') === 'complete') {
           idleQueueHelper(func)
