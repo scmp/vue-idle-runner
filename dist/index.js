@@ -35,13 +35,13 @@ exports.default = {
       onLoadTimeout: 0
     };
 
-    Vue.component('onload-idle-queue', (0, _onLoadIdleQueue2.default)((0, _defaults2.default)(defaultOptions, options)));
+    Vue.component('onload-idle-queue', (0, _onLoadIdleQueue2.default)((0, _defaults2.default)(options, defaultOptions)));
     Vue.component('idle-queue', _idleQueue4.default);
 
     Vue.prototype.$idleQueue = function (func) {
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-      options = (0, _defaults2.default)(defaultOptions, options);
+      options = (0, _defaults2.default)(options, defaultOptions);
       if ((0, _get2.default)(options, 'onload') && typeof window !== 'undefined' && typeof document !== 'undefined') {
         if ((0, _get2.default)(document, 'readyState') === 'complete') {
           (0, _idleQueue2.default)(func);
