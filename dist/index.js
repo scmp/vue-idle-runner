@@ -31,7 +31,7 @@ exports.default = {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     var defaultOptions = {
-      onload: false,
+      onLoad: false,
       onLoadTimeout: 0
     };
 
@@ -42,7 +42,7 @@ exports.default = {
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       options = (0, _defaults2.default)(options, defaultOptions);
-      if ((0, _get2.default)(options, 'onload') && typeof window !== 'undefined' && typeof document !== 'undefined') {
+      if ((0, _get2.default)(options, 'onLoad') && typeof window !== 'undefined' && typeof document !== 'undefined') {
         if ((0, _get2.default)(document, 'readyState') === 'complete') {
           (0, _idleQueue2.default)(func);
         } else {

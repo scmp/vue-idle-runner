@@ -7,7 +7,7 @@ import defaults from 'lodash/defaults'
 export default {
   install (Vue, options = {}) {
     const defaultOptions = {
-      onload: false,
+      onLoad: false,
       onLoadTimeout: 0,
     }
 
@@ -16,7 +16,7 @@ export default {
 
     Vue.prototype.$idleQueue = function (func, options = {}) {
       options = defaults(options, defaultOptions)
-      if (get(options, 'onload') && typeof window !== 'undefined' && typeof document !== 'undefined') {
+      if (get(options, 'onLoad') && typeof window !== 'undefined' && typeof document !== 'undefined') {
         if (get(document, 'readyState') === 'complete') {
           idleQueueHelper(func)
         } else {
