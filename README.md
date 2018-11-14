@@ -24,9 +24,9 @@ Vue.use(VueIdleRunner, {
 |:---|---|---|---|
 | `onLoadTimeout`|Run the onload idle task after a certain time in millisecond even page onload still not complete |`0`|`Number`|
 
+---
 
 You can use idle queue by template markup or use it individually by function call, you can also use the mixin.
-
 
 By Function:
 ## Options
@@ -47,6 +47,8 @@ this.$idleQueue(function() {
   console.log('I am run by idleQueue')
 })
 ```
+
+---
 
 By template:
 ```html
@@ -69,6 +71,7 @@ After page onload / by timeout:
 </onload-idle-queue>
 ```
 
+---
 
 By mixin:
 
