@@ -1,6 +1,6 @@
 {
   "name": "vue-idle-runner",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Vue component and mixin for running component / function in each idle call.",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
