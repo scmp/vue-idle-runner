@@ -10,9 +10,13 @@ export default (options) => {
         type: Number,
         default: get(options, 'onLoadTimeout', 0), // No timeout, should wait for onload event.
       },
+      forceRender: {
+        type: Boolean,
+        default: false,
+      },
     },
     render(h) {
-      if (this.isOnloadIdle) {
+      if (this.forceRender || this.isOnloadIdle) {
         return h('div', null, this.$slots.default)
       }
       return h
