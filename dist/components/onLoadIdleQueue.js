@@ -22,10 +22,14 @@ exports.default = function (options) {
       onLoadTimeout: {
         type: Number,
         default: (0, _get2.default)(options, 'onLoadTimeout', 0) // No timeout, should wait for onload event.
+      },
+      forceRender: {
+        type: Boolean,
+        default: false
       }
     },
     render: function render(h) {
-      if (this.isOnloadIdle) {
+      if (this.forceRender || this.isOnloadIdle) {
         return h('div', null, this.$slots.default);
       }
       return h;
